@@ -1,6 +1,4 @@
 use cryptopals::encode;
-use cryptopals::encode_one_byte;
-use cryptopals::encode_two_bytes;
 use cryptopals::hex_str_to_u8;
 
 #[test]
