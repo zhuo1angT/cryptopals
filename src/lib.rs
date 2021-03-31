@@ -8,6 +8,10 @@ pub use base64::encode_two_bytes;
 
 pub use fixed_xor::fixed_xor;
 
+pub use solve_single_xor::all_single_byte_xors;
+pub use solve_single_xor::xor_cipher;
+
 pub mod base64;
 pub mod conversion;
 pub mod fixed_xor;
+pub mod solve_single_xor;
