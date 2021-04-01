@@ -7,7 +7,7 @@ static ENCODE_TABLE: [char; 64] = [
     '5', '6', '7', '8', '9', '+', '/',
 ];
 
-pub fn encode(hex: &Vec<u8>) -> String {
+pub fn encode(hex: &[u8]) -> String {
     let mut res = String::new();
 
     let mut cur: usize = 0;

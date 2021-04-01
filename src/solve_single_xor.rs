@@ -8,7 +8,7 @@ You can do this by hand. But don't: write code to do it for you.
 How? Devise some method for "scoring" a piece of English plaintext. Character frequency is a good metric. Evaluate each output and choose the one with the best score.
 */
 
-pub fn all_single_byte_xors(ciphertext: &Vec<u8>) -> Vec<String> {
+pub fn all_single_byte_xors(ciphertext: &[u8]) -> Vec<String> {
     let mut res = Vec::new();
     for c in 0..=std::u8::MAX {
         let ciphered = xor_cipher(ciphertext, c);
@@ -19,6 +19,6 @@ pub fn all_single_byte_xors(ciphertext: &Vec<u8>) -> Vec<String> {
     res
 }
 
-pub fn xor_cipher(text: &Vec<u8>, cipher: u8) -> Vec<u8> {
+pub fn xor_cipher(text: &[u8], cipher: u8) -> Vec<u8> {
     text.iter().map(|x| x ^ cipher).collect()
 }
