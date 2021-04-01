@@ -22,7 +22,6 @@ pub fn hex_str_to_u8_vec(hex_str: &str) -> Vec<u8> {
 }
 
 pub fn u8_vec_to_hex_str(uvec: Vec<u8>) -> String {
-    assert!(uvec.len() % 2 == 0);
     let mut res = String::with_capacity(uvec.len() * 2);
     for val in uvec {
         let first_hex = val >> 4;
