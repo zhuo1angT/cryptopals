@@ -13,7 +13,7 @@ pub use solve_single_xor::xor_cipher;
 
 pub use repeating_key_xor::repeating_key_xor;
 
-pub use break_repeating_key_xor::bit_level_hamming_dis;
+pub use break_repeating_key_xor::bit_wise_hamming_dis;
 
 pub mod base64;
 pub mod break_repeating_key_xor;
