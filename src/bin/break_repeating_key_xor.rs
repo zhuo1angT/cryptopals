@@ -9,32 +9,35 @@ fn main() {
     assert_eq!(args.len(), 2);
 
     let text: String = fs::read_to_string(&args[1]).unwrap().lines().collect();
+    let text = base64::decode(text).unwrap();
 
     let mut keysize_and_dis: Vec<(usize, f64)> = Vec::with_capacity(40);
     for keysize in 2..=40 {
         keysize_and_dis.push((
             keysize,
-            (bitwise_hamming_dis(
-                &text[..keysize].as_bytes(),
-                &text[keysize..keysize * 2].as_bytes(),
-            ) + bitwise_hamming_dis(
-                &text[keysize * 2..keysize * 3].as_bytes(),
-                &text[keysize * 3..keysize * 4].as_bytes(),
-            )) as f64
+            (bitwise_hamming_dis(&text[..keysize], &text[keysize..keysize * 2])
+                + bitwise_hamming_dis(
+                    &text[keysize * 2..keysize * 3],
+                    &text[keysize * 3..keysize * 4],
+                )) as f64
                 / keysize as f64,
         ));
     }
-    keysize_and_dis.sort_by(|a, b| a.1.partial_cmp(&b.1).expect("NaN"));
+    keysize_and_dis.sort_by(|a, b| a.1.partial_cmp(&b.1).expect("Compared with f64 NaN"));
 
-    for (keysize, dis) in keysize_and_dis {
+    for (keysize, _dis) in keysize_and_dis {
         let mut blocks: Vec<Vec<u8>> = vec![Vec::new(); keysize];
-        for (i, &byte) in text.as_bytes().iter().enumerate() {
+        for (i, &byte) in text.iter().enumerate() {
             blocks[i % keysize].push(byte);
         }
-        let snippits: Vec<String> = blocks
+        let mut snippits: Vec<String> = blocks
             .iter()
             .map(|block| best_english_text(&all_single_byte_xors(block)))
             .collect();
+
+        for block in blocks {
+            snippits.push(best_english_text(&all_single_byte_xors(&block)));
+        }
 
         let mut current_res = String::new();
         for i in 0..snippits[0].len() {
@@ -44,7 +47,10 @@ fn main() {
                 }
             }
         }
-        println!("{} {}", keysize, dis);
-        println!("{}", current_res);
+
+        if current_res.len() != 0 {
+            println!("{}", current_res);
+            return;
+        }
     }
 }
