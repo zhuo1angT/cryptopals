@@ -1,6 +1,4 @@
-pub fn bit_wise_hamming_dis(s1: &str, s2: &str) -> usize {
-    let s1 = s1.as_bytes();
-    let s2 = s2.as_bytes();
+pub fn bitwise_hamming_dis(s1: &[u8], s2: &[u8]) -> usize {
     assert!(s1.len() == s2.len());
 
     let mut res = 0;
