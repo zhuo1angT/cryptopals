@@ -35,10 +35,6 @@ fn main() {
             .map(|block| best_english_text(&all_single_byte_xors(block)))
             .collect();
 
-        for block in blocks {
-            snippits.push(best_english_text(&all_single_byte_xors(&block)));
-        }
-
         let mut current_res = String::new();
         for i in 0..snippits[0].len() {
             for j in 0..snippits.len() {
