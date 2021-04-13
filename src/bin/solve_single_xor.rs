@@ -1,5 +1,6 @@
+use cryptopals::all_single_byte_xors;
 use cryptopals::best_english_text;
-use cryptopals::{hex_str_to_u8_vec, solve_single_xor::all_single_byte_xors};
+use cryptopals::hex_str_to_u8_vec;
 use std::env;
 
 fn main() {

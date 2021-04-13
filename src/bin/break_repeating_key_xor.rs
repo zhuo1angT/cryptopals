@@ -30,7 +30,7 @@ fn main() {
         for (i, &byte) in text.iter().enumerate() {
             blocks[i % keysize].push(byte);
         }
-        let mut snippits: Vec<String> = blocks
+        let snippits: Vec<String> = blocks
             .iter()
             .map(|block| best_english_text(&all_single_byte_xors(block)))
             .collect();
@@ -40,6 +40,8 @@ fn main() {
             for j in 0..snippits.len() {
                 if i < snippits[j].len() {
                     current_res.push(snippits[j].as_bytes()[i] as char);
+                } else {
+                    break;
                 }
             }
         }

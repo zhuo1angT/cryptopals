@@ -15,7 +15,7 @@ pub fn all_single_byte_xors(ciphertext: &[u8]) -> Vec<String> {
         let ciphered = xor_cipher(ciphertext, c);
         if ciphered
             .iter()
-            .all(|&byte| byte.is_printable() || byte == '\n' as u8)
+            .all(|&byte| byte.is_printable() || byte.is_space())
         {
             res.push(std::str::from_utf8(&ciphered).unwrap().to_string());
         }
@@ -59,7 +59,7 @@ pub fn best_english_text(texts: &[String]) -> String {
     .collect();
 
     let mut max_score: f64 = 0.0;
-    let mut res = String::new();
+    let mut res = "";
     for s in texts {
         let mut cur_str_score = 0.0;
         for ch in s.chars() {
@@ -69,10 +69,10 @@ pub fn best_english_text(texts: &[String]) -> String {
         }
         if cur_str_score > max_score {
             max_score = cur_str_score;
-            res = (*s).clone();
+            res = s;
         }
     }
-    return res;
+    return res.to_string();
 }
 
 pub fn xor_cipher(text: &[u8], cipher: u8) -> Vec<u8> {

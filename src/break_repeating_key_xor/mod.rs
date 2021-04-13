@@ -1,3 +1,3 @@
-pub use decrypt::bitwise_hamming_dis;
+pub use bitwise_hamming_dis::bitwise_hamming_dis;
 
-mod decrypt;
+mod bitwise_hamming_dis;
