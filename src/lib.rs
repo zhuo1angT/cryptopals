@@ -16,9 +16,12 @@ pub use repeating_key_xor::repeating_key_xor;
 
 pub use bitwise_hamming_dis::bitwise_hamming_dis;
 
+pub use pkcs7::pkcs7;
+
 pub mod base64;
 pub mod bitwise_hamming_dis;
 pub mod break_single_xor;
 pub mod conversion;
 pub mod fixed_xor;
+pub mod pkcs7;
 pub mod repeating_key_xor;
