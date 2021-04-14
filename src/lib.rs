@@ -14,10 +14,10 @@ pub use break_single_xor::xor_cipher;
 
 pub use repeating_key_xor::repeating_key_xor;
 
-pub use break_repeating_key_xor::bitwise_hamming_dis;
+pub use bitwise_hamming_dis::bitwise_hamming_dis;
 
 pub mod base64;
-pub mod break_repeating_key_xor;
+pub mod bitwise_hamming_dis;
 pub mod break_single_xor;
 pub mod conversion;
 pub mod fixed_xor;
